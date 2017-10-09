@@ -16,3 +16,16 @@ def build_chain(text, chain={}):
             chain[key] = [word]
         index += 1
     return chain
+
+def generate_message(chain, count = 100):
+    word1 = random.choice(list(chain.keys()))
+    message = word1.capitalize()
+
+    while len(message.split(' ')) < count:
+        word2 = random.choice(chain[word1])
+        word1 = word2
+        message += ' ' + word2
+
+    return message
+
+
