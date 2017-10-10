@@ -1,4 +1,7 @@
-#!/opt/anaconda/
+#!/opt/anaconda3/bin/python
+import argparse
+import random
+
 
 def read_file(filename):
     with open(filename, 'r') as file:
@@ -17,7 +20,7 @@ def build_chain(text, chain={}):
         index += 1
     return chain
 
-def generate_message(chain, count = 100):
+def generate_message(chain, count = 10):
     word1 = random.choice(list(chain.keys()))
     message = word1.capitalize()
 
@@ -28,4 +31,17 @@ def generate_message(chain, count = 100):
 
     return message
 
+def write_file(filename, message):
+    with open(filename, 'w') as file:
+        file.write(message)
 
+def main():
+    con = read_file('input.txt')
+    chain = build_chain(con)
+    message = generate_message(chain)
+    print(message)
+
+    
+
+if __name__ == '__main__':
+    main()
